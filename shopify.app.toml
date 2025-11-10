@@ -2,7 +2,7 @@
 
 name = "shopify-image-app"
 client_id = "6d5593dbc8c7a2c4691d0a7b6ea29a18"
-application_url = "https://your-app.vercel.app"
+application_url = "https://YOUR_ACTUAL_VERCEL_URL.vercel.app"
 embedded = false
 
 [access_scopes]
@@ -10,7 +10,7 @@ scopes = "read_products,write_products"
 
 [auth]
 redirect_urls = [
-  "https://your-app.vercel.app/auth/callback",
+  "https://YOUR_ACTUAL_VERCEL_URL.vercel.app/auth/callback",
   "http://localhost:3001/auth/callback"
 ]
 
