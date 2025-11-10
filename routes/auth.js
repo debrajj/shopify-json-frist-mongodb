@@ -40,18 +40,19 @@ router.get('/shopify', async (req, res) => {
   }
 
   try {
-    const authRoute = await shopify.auth.begin({
+    await shopify.auth.begin({
       shop: shopify.utils.sanitizeShop(shop, true),
       callbackPath: '/auth/callback',
       isOnline: false,
       rawRequest: req,
       rawResponse: res,
     });
-
-    res.redirect(authRoute);
+    // Response is handled by shopify.auth.begin
   } catch (error) {
     console.error('Auth error:', error);
-    res.status(500).send('Authentication failed');
+    if (!res.headersSent) {
+      res.status(500).send('Authentication failed');
+    }
   }
 });
 
