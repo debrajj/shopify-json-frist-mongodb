@@ -30,9 +30,12 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/install.html');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${process.env.HOST}`);
-});
+// Only start server if not in Vercel environment
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server running on ${process.env.HOST || `http://localhost:${PORT}`}`);
+  });
+}
 
 // Export for Vercel
 module.exports = app;
